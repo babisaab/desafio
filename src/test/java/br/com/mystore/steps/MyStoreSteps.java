@@ -16,7 +16,7 @@ public class MyStoreSteps {
 	private IndexPage indexPage = new IndexPage();
 	private DetalhesPage detalhesPage = new DetalhesPage();
 	private LoginPage loginPage = new LoginPage();
-	private CarrinhoPage carrinhoaPage = new CarrinhoPage();
+	private CarrinhoPage carrinhoPage = new CarrinhoPage();
 	
     @After()
 	public void fecharNavegador() throws InterruptedException {
@@ -55,37 +55,33 @@ public class MyStoreSteps {
 
 	@Quando("realizo o login informando {string} e {string} corretos")
 	public void realizo_o_login_informando_e_corretos(String email, String senha) {
-                //loginPage.logar("teste@gmail.com", "123456");
+        carrinhoPage.prosseguirCheckout();        
+		loginPage.logar("desafio@gmail.com", "123456");
 	}
 
 	@Quando("escolho o endereco para entrega")
 	public void escolho_o_endereco_para_entrega() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+           carrinhoPage.confirmarEndereco();
 	}
 
 	@Quando("concordo com os termos do servico de frete")
 	public void concordo_com_os_termos_do_servico_de_frete() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+           carrinhoPage.aceitarTermosServico();
 	}
 
 	@Quando("escolho pagar por transferencia bancaria")
 	public void escolho_pagar_por_transferencia_bancaria() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+           carrinhoPage.selecionarPagamentoTransfereciaBancaria();
 	}
 
 	@Quando("confirmo a minha compra")
 	public void confirmo_a_minha_compra() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+           carrinhoPage.confirmarCompra();
 	}
 
 	@Entao("deve ser exibida a mensagem {string}")
-	public void deve_ser_exibida_a_mensagem(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	public void deve_ser_exibida_a_mensagem(String mensagem) {
+           Assert.assertEquals(carrinhoPage.verificarMensagemSucesso(), "Your order on My Store is complete.");
 	}
 	
 }

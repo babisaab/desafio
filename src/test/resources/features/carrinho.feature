@@ -2,12 +2,14 @@
 
 Funcionalidade: Carrinho de compras
   Deve realizar a pesquisa e o fluxo de compra completo no website My Store
-
+  
+@teste1
 Cenario: Pesquisa e visualizacao dos detalhes de um produto
 Dado que pesquiso por um "<produto>"
 Quando clico no botao mais do primeiro produto exibido
 Entao devo ser redirecionado para a tela de detalhes do produto pesquisado
 
+@teste2
 Cenario: Fluxo completo de compra
 Dado adiciono o produto ao carrinho
 Quando decido prosseguir com o checkout

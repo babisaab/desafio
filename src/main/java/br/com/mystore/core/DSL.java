@@ -197,4 +197,8 @@ public class DSL {
 		return this;
 	}
 	
+	public void clicarCheck(String id) {
+		getDriver().findElement(By.id(id)).click();
+	}
+	
 }
