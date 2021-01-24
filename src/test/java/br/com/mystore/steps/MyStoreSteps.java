@@ -1,17 +1,21 @@
 package br.com.mystore.steps;
 
+import br.com.mystore.page.CarrinhoPage;
+import br.com.mystore.page.IndexPage;
+import br.com.mystore.page.LoginPage;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
 public class MyStoreSteps {
-
-	
+       
+	private IndexPage indexPage = new IndexPage();
+	private LoginPage login = new LoginPage();
+	private CarrinhoPage carrinho = new CarrinhoPage();
 	
 	@Dado("que pesquiso por um {string}")
 	public void que_pesquiso_por_um(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+                indexPage.acessarIndexPage();
 	}
 
 	@Quando("clico no botao mais do primeiro produto exibido")

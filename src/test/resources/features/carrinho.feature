@@ -3,7 +3,7 @@
 Funcionalidade: Carrinho de compras
   Deve realizar a pesquisa e o fluxo de compra completo no website My Store
 
-Cenario: Pesquisa e visualização dos detalhes de um produto
+Cenario: Pesquisa e visualizacao dos detalhes de um produto
 Dado que pesquiso por um "<produto>"
 Quando clico no botao mais do primeiro produto exibido
 Entao devo ser redirecionado para a tela de detalhes do produto pesquisado
