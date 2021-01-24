@@ -1,6 +1,7 @@
 package br.com.mystore.page;
 
 import br.com.mystore.core.DSL;
+import io.cucumber.java.Before;
 
 public class BasePage {
 

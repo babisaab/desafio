@@ -3,8 +3,10 @@ package br.com.mystore.steps;
 import org.junit.Assert;
 
 import br.com.mystore.page.CarrinhoPage;
+import br.com.mystore.page.DetalhesPage;
 import br.com.mystore.page.IndexPage;
 import br.com.mystore.page.LoginPage;
+import io.cucumber.java.After;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -12,8 +14,14 @@ import io.cucumber.java.pt.Quando;
 public class MyStoreSteps {
        
 	private IndexPage indexPage = new IndexPage();
-	private LoginPage login = new LoginPage();
-	private CarrinhoPage carrinho = new CarrinhoPage();
+	private DetalhesPage detalhesPage = new DetalhesPage();
+	private LoginPage loginPage = new LoginPage();
+	private CarrinhoPage carrinhoaPage = new CarrinhoPage();
+	
+    @After()
+	public void fecharNavegador() throws InterruptedException {
+		indexPage.closeBrowser();
+	}
 	
 	@Dado("que pesquiso por um {string}")
 	public void que_pesquiso_por_um(String string) {
@@ -28,26 +36,26 @@ public class MyStoreSteps {
 
 	@Entao("devo ser redirecionado para a tela de detalhes do produto pesquisado")
 	public void devo_ser_redirecionado_para_a_tela_de_detalhes_do_produto_pesquisado() {
-		Assert.assertEquals(indexPage.verficaNomeDoProduto(), "Faded Short Sleeve T-shirts");
+		Assert.assertEquals(detalhesPage.verficaNomeDoProduto(), "Faded Short Sleeve T-shirts");
               
 	}
 
 	@Dado("adiciono o produto ao carrinho")
 	public void adiciono_o_produto_ao_carrinho() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	    indexPage.acessarIndexPage();
+	    indexPage.pesquisarProduto();
+	    indexPage.escolherProduto();
 	}
 
 	@Quando("decido prosseguir com o checkout")
 	public void decido_prosseguir_com_o_checkout() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+		detalhesPage.adicionarAoCarrinho();
+		detalhesPage.irParaCheckout();
 	}
 
 	@Quando("realizo o login informando {string} e {string} corretos")
-	public void realizo_o_login_informando_e_corretos(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+	public void realizo_o_login_informando_e_corretos(String email, String senha) {
+                //loginPage.logar("teste@gmail.com", "123456");
 	}
 
 	@Quando("escolho o endereco para entrega")
