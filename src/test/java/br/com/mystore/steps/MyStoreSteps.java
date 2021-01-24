@@ -1,5 +1,7 @@
 package br.com.mystore.steps;
 
+import org.junit.Assert;
+
 import br.com.mystore.page.CarrinhoPage;
 import br.com.mystore.page.IndexPage;
 import br.com.mystore.page.LoginPage;
@@ -16,18 +18,18 @@ public class MyStoreSteps {
 	@Dado("que pesquiso por um {string}")
 	public void que_pesquiso_por_um(String string) {
                 indexPage.acessarIndexPage();
+                indexPage.pesquisarProduto();
 	}
 
 	@Quando("clico no botao mais do primeiro produto exibido")
 	public void clico_no_botao_mais_do_primeiro_produto_exibido() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+        indexPage.escolherProduto();        
 	}
 
 	@Entao("devo ser redirecionado para a tela de detalhes do produto pesquisado")
 	public void devo_ser_redirecionado_para_a_tela_de_detalhes_do_produto_pesquisado() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new cucumber.api.PendingException();
+		Assert.assertEquals(indexPage.verficaNomeDoProduto(), "Faded Short Sleeve T-shirts");
+              
 	}
 
 	@Dado("adiciono o produto ao carrinho")

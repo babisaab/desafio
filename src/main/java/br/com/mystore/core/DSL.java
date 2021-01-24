@@ -9,13 +9,16 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.com.mystore.core.DriverFactory;
+
 public class DSL {
      
-	private Integer ESPERA_PADRAO = 30;
+	private Integer ESPERA_PADRAO = 10;
 
 	public DSL() {
 
@@ -182,4 +185,16 @@ public class DSL {
 		executarJavascript("window.scrollTo(0, 0)");
 		return this;
 	}	
+	
+	public DSL scrollAteImagem(String xpath) {
+		executarJavascript("scrollBy(0,250);", xpath);
+		return this;
+	}
+	
+	public DSL hover(String xpath) {
+		Actions actions = new Actions(DriverFactory.getDriver());
+		actions.moveToElement(getDriver().findElement(By.xpath(xpath))).build().perform();
+		return this;
+	}
+	
 }
