@@ -6,12 +6,10 @@ import static br.com.mystore.core.DriverFactory.getDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.mystore.core.DriverFactory;
@@ -29,24 +27,12 @@ public class DSL {
 		return this;
 	}
 	
-	public void clicarLink(String link) {
-		getDriver().findElement(By.linkText(link)).click();
-	}
-	
-	public void clicarLinkXpath(String xpath) {
-		getDriver().findElement(By.xpath(xpath)).click();
-	}	
-
 	public DSL inserirCampo(String xpath, String valor) {
 		WebElement campo = encontrar(xpath);
 		campo.sendKeys(valor);
 		return this;
 	}
 	
-	public String getEndereco() {
-		return getDriver().getCurrentUrl();
-	}
-
 	public void esperaAteExistente(String xpath) {
 		WebDriverWait espera = new WebDriverWait(DriverFactory.getDriver(), ESPERA_PADRAO);
 		espera.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
@@ -106,44 +92,13 @@ public class DSL {
 		}
 		return texto;
 	}
-	
-	public String getAtributo(String xpath, String atributo) {
-		WebElement textField = getElemento(xpath);
-		String texto;
-		try {
-			texto = textField.getAttribute(atributo).trim();
-		} catch (WebDriverException e) {
-			textField = getElemento(xpath);
-			texto = textField.getAttribute(atributo).trim();
-		}
-		return texto;
-	}
 
 	public void fecharNavegador() throws InterruptedException {
 		closeWebDriver();
 	}
 	
-	public DSL esperarAteUrlConter(String string) {
-		WebDriverWait wait = new WebDriverWait(getDriver(), ESPERA_PADRAO);
-		wait.until(ExpectedConditions.urlContains(string));
-		return this;
-	}
-	
 	public void clicarBotao(String xpath) {
 		getDriver().findElement(By.xpath(xpath)).click();
-	}
-	
-	public void selecionarCombo(String xpath, String valor) {
-		WebElement element = getDriver().findElement(By.xpath(xpath));
-		Select combo = new Select(element);
-		combo.selectByVisibleText(valor);
-}
-	public void clicarRadio(By by) {
-		getDriver().findElement(by).click();
-	}
-	
-	public void clicarRadio(String xpath) {
-		clicarRadio(By.xpath(xpath));
 	}
 	
 	public DSL esperarAteClicavel(String xpath) {
@@ -170,23 +125,12 @@ public class DSL {
 	}
 	
 	
-	public DSL digitar(String xpath, String texto) {
-		WebElement elemento = encontrar(xpath);
-		elemento.clear();
-		elemento.sendKeys(texto + Keys.ENTER);	
-		return this;
-	}
-	
-	public void trocarJanela(String id) {
-		getDriver().switchTo().window(id);
-	}
-	
 	public DSL scrollAteTopo() {
 		executarJavascript("window.scrollTo(0, 0)");
 		return this;
 	}	
 	
-	public DSL scrollAteImagem(String xpath) {
+	public DSL scrollDowm(String xpath) {
 		executarJavascript("scrollBy(0,250);", xpath);
 		return this;
 	}
@@ -196,9 +140,4 @@ public class DSL {
 		actions.moveToElement(getDriver().findElement(By.xpath(xpath))).build().perform();
 		return this;
 	}
-	
-	public void clicarCheck(String id) {
-		getDriver().findElement(By.id(id)).click();
-	}
-	
 }

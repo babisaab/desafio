@@ -42,14 +42,11 @@ public class MyStoreSteps {
 
 	@Dado("adiciono o produto ao carrinho")
 	public void adiciono_o_produto_ao_carrinho() {
-	    indexPage.acessarIndexPage();
-	    indexPage.pesquisarProduto();
-	    indexPage.escolherProduto();
+		detalhesPage.adicionarAoCarrinho();
 	}
 
 	@Quando("decido prosseguir com o checkout")
 	public void decido_prosseguir_com_o_checkout() {
-		detalhesPage.adicionarAoCarrinho();
 		detalhesPage.irParaCheckout();
 	}
 

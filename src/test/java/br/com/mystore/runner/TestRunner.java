@@ -11,8 +11,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
                  plugin = { "pretty" }, 
                  glue = { "br.com.mystore.steps"},
                  snippets = SnippetType.CAMELCASE,
-                 dryRun = false,
-                 tags = { "@teste1, @teste2" })
+                 dryRun = false)
 public class TestRunner {
-
+	
 }
